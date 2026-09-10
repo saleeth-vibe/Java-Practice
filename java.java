@@ -3750,3 +3750,134 @@ public class EmployeeManagementSystem {
         sc.close();
     }
 }          
+
+            import java.util.Scanner;
+
+public class ParkingManagementSystem {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String[] vehicleNumber = new String[20];
+        String[] vehicleType = new String[20];
+
+        int totalSlots = 20;
+        int count = 0;
+        int choice;
+
+        do {
+
+            System.out.println("\n===== PARKING MANAGEMENT SYSTEM =====");
+            System.out.println("1. Park Vehicle");
+            System.out.println("2. Remove Vehicle");
+            System.out.println("3. View Parked Vehicles");
+            System.out.println("4. Check Available Slots");
+            System.out.println("5. Exit");
+            System.out.print("Enter Choice: ");
+
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+
+                case 1:
+
+                    if (count < totalSlots) {
+
+                        System.out.print("Enter Vehicle Number: ");
+                        vehicleNumber[count] = sc.nextLine();
+
+                        System.out.print("Enter Vehicle Type (Bike/Car): ");
+                        vehicleType[count] = sc.nextLine();
+
+                        count++;
+
+                        System.out.println("Vehicle Parked Successfully!");
+
+                    } else {
+
+                        System.out.println("Parking Full!");
+
+                    }
+
+                    break;
+
+                case 2:
+
+                    if (count == 0) {
+
+                        System.out.println("No Vehicles Parked!");
+
+                    } else {
+
+                        System.out.print("Enter Vehicle Number: ");
+                        String remove = sc.nextLine();
+
+                        boolean found = false;
+
+                        for (int i = 0; i < count; i++) {
+
+                            if (vehicleNumber[i].equalsIgnoreCase(remove)) {
+
+                                for (int j = i; j < count - 1; j++) {
+                                    vehicleNumber[j] = vehicleNumber[j + 1];
+                                    vehicleType[j] = vehicleType[j + 1];
+                                }
+
+                                count--;
+                                found = true;
+
+                                System.out.println("Vehicle Removed Successfully!");
+                                break;
+                            }
+                        }
+
+                        if (!found) {
+                            System.out.println("Vehicle Not Found!");
+                        }
+                    }
+
+                    break;
+
+                case 3:
+
+                    if (count == 0) {
+
+                        System.out.println("Parking Area Empty!");
+
+                    } else {
+
+                        System.out.println("\n===== PARKED VEHICLES =====");
+
+                        for (int i = 0; i < count; i++) {
+
+                            System.out.println("Vehicle No : " + vehicleNumber[i]);
+                            System.out.println("Type       : " + vehicleType[i]);
+                            System.out.println("---------------------------");
+                        }
+                    }
+
+                    break;
+
+                case 4:
+
+                    System.out.println("Available Slots: " + (totalSlots - count));
+
+                    break;
+
+                case 5:
+
+                    System.out.println("Thank You!");
+                    break;
+
+                default:
+
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while (choice != 5);
+
+        sc.close();
+    }
+}
