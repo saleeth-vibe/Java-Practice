@@ -3881,3 +3881,117 @@ public class ParkingManagementSystem {
         sc.close();
     }
 }
+
+ import java.util.Scanner;
+
+public class ElectricityBillManagement {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String consumerName = "";
+        int consumerId = 0;
+        int units = 0;
+        boolean added = false;
+
+        int choice;
+
+        do {
+
+            System.out.println("\n===== ELECTRICITY BILL MANAGEMENT =====");
+            System.out.println("1. Add Consumer");
+            System.out.println("2. Enter Units");
+            System.out.println("3. Calculate Bill");
+            System.out.println("4. View Consumer");
+            System.out.println("5. Exit");
+            System.out.print("Enter Choice: ");
+
+            choice = sc.nextInt();
+
+            switch (choice) {
+
+                case 1:
+
+                    sc.nextLine();
+
+                    System.out.print("Enter Consumer Name: ");
+                    consumerName = sc.nextLine();
+
+                    System.out.print("Enter Consumer ID: ");
+                    consumerId = sc.nextInt();
+
+                    added = true;
+
+                    System.out.println("Consumer Added Successfully!");
+                    break;
+
+                case 2:
+
+                    if (added) {
+
+                        System.out.print("Enter Units Consumed: ");
+                        units = sc.nextInt();
+
+                    } else {
+
+                        System.out.println("Add Consumer First!");
+                    }
+
+                    break;
+
+                case 3:
+
+                    if (added) {
+
+                        double bill;
+
+                        if (units <= 100)
+                            bill = units * 2.5;
+                        else if (units <= 300)
+                            bill = units * 4.0;
+                        else
+                            bill = units * 6.0;
+
+                        System.out.println("\n===== BILL DETAILS =====");
+                        System.out.println("Units Consumed : " + units);
+                        System.out.println("Total Bill     : ₹" + bill);
+
+                    } else {
+
+                        System.out.println("No Consumer Found!");
+                    }
+
+                    break;
+
+                case 4:
+
+                    if (added) {
+
+                        System.out.println("\nConsumer Name : " + consumerName);
+                        System.out.println("Consumer ID   : " + consumerId);
+                        System.out.println("Units         : " + units);
+
+                    } else {
+
+                        System.out.println("No Consumer Found!");
+                    }
+
+                    break;
+
+                case 5:
+
+                    System.out.println("Thank You!");
+                    break;
+
+                default:
+
+                    System.out.println("Invalid Choice!");
+
+            }
+
+        } while (choice != 5);
+
+        sc.close();
+    }
+    }       
