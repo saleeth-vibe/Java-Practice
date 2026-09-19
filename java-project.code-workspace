@@ -522,3 +522,91 @@ public class HotelRoomBooking {
         sc.close();
     }
 }
+
+import java.util.Scanner;
+
+public class TodoList {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String[] tasks = new String[10];
+        boolean[] completed = new boolean[10];
+
+        int count = 0;
+        int choice;
+
+        do {
+            System.out.println("\n===== TO-DO LIST =====");
+            System.out.println("1. Add Task");
+            System.out.println("2. View Tasks");
+            System.out.println("3. Complete Task");
+            System.out.println("4. Exit");
+            System.out.print("Enter Choice: ");
+
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch (choice) {
+
+                case 1:
+                    if (count < 10) {
+                        System.out.print("Enter Task: ");
+                        tasks[count] = sc.nextLine();
+                        completed[count] = false;
+                        count++;
+
+                        System.out.println("Task Added!");
+                    } else {
+                        System.out.println("Task List is Full!");
+                    }
+                    break;
+
+                case 2:
+                    if (count == 0) {
+                        System.out.println("No Tasks Found!");
+                    } else {
+                        System.out.println("\n===== TASKS =====");
+
+                        for (int i = 0; i < count; i++) {
+                            String status = completed[i]
+                                    ? "Completed"
+                                    : "Pending";
+
+                            System.out.println(
+                                (i + 1) + ". " + tasks[i] + " - " + status
+                            );
+                        }
+                    }
+                    break;
+
+                case 3:
+                    if (count == 0) {
+                        System.out.println("No Tasks Found!");
+                    } else {
+                        System.out.print("Enter Task Number: ");
+                        int taskNumber = sc.nextInt();
+
+                        if (taskNumber >= 1 && taskNumber <= count) {
+                            completed[taskNumber - 1] = true;
+                            System.out.println("Task Completed!");
+                        } else {
+                            System.out.println("Invalid Task Number!");
+                        }
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Thank You!");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
