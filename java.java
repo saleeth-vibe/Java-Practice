@@ -4073,3 +4073,44 @@ public class TodoList {
         sc.close();
     }
 }        
+
+import java.util.Scanner;
+
+public class PasswordChecker {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Password: ");
+        String password = sc.nextLine();
+
+        boolean hasNumber = false;
+        boolean hasUppercase = false;
+
+        for (int i = 0; i < password.length(); i++) {
+
+            char ch = password.charAt(i);
+
+            if (Character.isDigit(ch)) {
+                hasNumber = true;
+            }
+
+            if (Character.isUpperCase(ch)) {
+                hasUppercase = true;
+            }
+        }
+
+        if (password.length() >= 8 && hasNumber && hasUppercase) {
+            System.out.println("Strong Password ");
+        } 
+        else if (password.length() >= 6 && hasNumber) {
+            System.out.println("Medium Password ");
+        } 
+        else {
+            System.out.println("Weak Password ");
+        }
+
+        sc.close();
+    }
+}
