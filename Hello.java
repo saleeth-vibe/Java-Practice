@@ -1884,3 +1884,74 @@ if (original == reverse) {
 } else {
     return false;
 }
+
+const express = require("express");
+
+const app = express();
+
+app.use(express.json());
+
+let posts = [];
+
+app.get("/health", (req, res) => {
+    res.json({
+        status: "ok"
+    });
+});
+
+app.get("/", (req, res) => {
+    res.json({
+        message: "API is running"
+    });
+});
+
+app.get("/posts", (req, res) => {
+    res.json(posts);
+});
+
+app.get("/posts/:id", (req, res) => {
+    const post = posts.find(
+        p => p.id === +req.params.id
+    );
+
+    if (!post) {
+        return res.status(404).json({
+            error: "Not found"
+        });
+    }
+
+    res.json(post);
+});
+
+app.post("/posts", (req, res) => {
+    const { title, content } = req.body;
+
+    if (!title) {
+        return res.status(400).json({
+            error: "title is required"
+        });
+    }
+
+    const post = {
+        id: Date.now(),
+        title,
+        content,
+        createdAt: new Date().toISOString()
+    };
+
+    posts.push(post);
+
+    res.status(201).json(post);
+});
+
+app.use((req, res) => {
+    res.status(404).json({
+        error: "Route not found"
+    });
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
