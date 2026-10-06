@@ -610,3 +610,66 @@ public class TodoList {
         sc.close();
     }
 }
+
+import java.util.Scanner;
+
+public class FoodOrder {
+
+    static double total = 0;
+
+    static void addItem(double price) {
+        total += price;
+        System.out.println("Item added! ");
+    }
+
+    static void showTotal() {
+        System.out.println("Total Bill: ₹" + total);
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n===== FOOD MENU =====");
+            System.out.println("1. Burger - ₹120");
+            System.out.println("2. Pizza  - ₹200");
+            System.out.println("3. Coffee - ₹80");
+            System.out.println("4. Show Bill");
+            System.out.println("5. Exit");
+
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    addItem(120);
+                    break;
+
+                case 2:
+                    addItem(200);
+                    break;
+
+                case 3:
+                    addItem(80);
+                    break;
+
+                case 4:
+                    showTotal();
+                    break;
+
+                case 5:
+                    System.out.println("Thank you! ");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 5);
+
+        sc.close();
+    }
+}
