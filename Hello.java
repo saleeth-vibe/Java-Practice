@@ -1966,7 +1966,7 @@ public class ContactManager {
     static void addContact(String n, String p) {
         name = n;
         phone = p;
-        System.out.println("Contact added successfully! ✅");
+        System.out.println("Contact added successfully! ");
     }
 
     static void viewContact() {
@@ -1981,7 +1981,7 @@ public class ContactManager {
     static void deleteContact() {
         name = "";
         phone = "";
-        System.out.println("Contact deleted! ✅");
+        System.out.println("Contact deleted! ");
     }
 
     public static void main(String[] args) {
